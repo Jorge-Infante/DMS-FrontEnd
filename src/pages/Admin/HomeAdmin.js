@@ -1,12 +1,21 @@
-import React from 'react';
-import {useAuth} from "../../hooks"
+import React, { useEffect } from "react";
+import { useAuth } from "../../hooks";
+import { useMovie } from "../../hooks/useMovie";
+import { map } from "lodash";
+import {Movies} from "../../components/movie"
 
 export const HomeAdmin = () => {
-  const {logout}=useAuth();
+  const { loading, movie, getAllMovies } = useMovie();
+  console.log("*** Loading -->", loading);
+  console.log("** Movies -->", movie);
+
+  useEffect(() => {
+    getAllMovies();
+  }, []);
+
   return (
     <div>
-        <h1>Home admin</h1>
-        <button onClick={logout}>cerrar session</button>
+      <Movies movie={movie}/>
     </div>
-  )
-}
+  );
+};

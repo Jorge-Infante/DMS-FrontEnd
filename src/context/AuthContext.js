@@ -20,10 +20,10 @@ export function AuthProvider(props){
                 const me = await getME(token)
                 setAuth({token,me});
             }else{
-                setAuth(undefined)
+                setAuth(null)
             }
         })()
-    })
+    },[])
     
 
     const login = async (token)=>{
